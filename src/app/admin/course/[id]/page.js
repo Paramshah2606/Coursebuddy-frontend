@@ -57,7 +57,7 @@ export default function CourseDetailPage() {
           (<div className="space-y-12">
             {
           lesson.map((l,ind)=>(
-            <div key={l.ind} className="bg-gray-50 p-6 rounded-lg shadow-sm">
+            <div key={ind} className="bg-gray-50 p-6 rounded-lg shadow-sm">
  <h4 className="text-xl font-semibold text-indigo-700 mb-4">
 Lesson {ind + 1}
 </h4>
