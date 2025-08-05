@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import {jwtDecode} from "jwt-decode";
 
 export default function Navbar() {
   const router = useRouter();
@@ -15,7 +16,13 @@ export default function Navbar() {
 
   function fetchToken(){
     setToken(localStorage.getItem('user-token'));
-    setRole(localStorage.getItem('role'));
+    const token=localStorage.getItem('user-token');
+    if(token){
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      const role = decoded.role;
+      setRole(role);
+    }
   }
 
   const handleLogout = () => {

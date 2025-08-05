@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import {jwtDecode} from "jwt-decode";
 
 export default function ClientAuthWrapper({ children }) {
   const router = useRouter();
@@ -10,7 +11,12 @@ export default function ClientAuthWrapper({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('user-token');
-    const role = localStorage.getItem('role'); 
+    let role;
+    if(token){
+       const decoded = jwtDecode(token);
+      console.log(decoded);
+      role = decoded.role; 
+    }
 
     const publicUserRoutes = ['/user/login', '/user/signup'];
     const publicAdminRoutes = ['/admin/login'];
