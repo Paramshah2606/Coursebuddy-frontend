@@ -29,7 +29,6 @@ const LoginForm = () => {
         if (res.code == 1) {
           toast.success(res.message);
           localStorage.setItem("user-token", res.data.user_token);
-          localStorage.setItem("role", res.data.role);
           localStorage.setItem("username", res.data.full_name);
           router.push('/user/course');
         } else {
